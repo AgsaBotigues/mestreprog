@@ -50,6 +50,11 @@ $( document ).ready(function() {
 	$('.list-group > li').click(function(){
 		$("#codigo").attr("value",$(this).attr("apartado"));
 		$("#apartado").attr("value",$(this).text());
+		if( $(this).attr("apartado") == 7 ){
+			//$("#listado").attr("action","procesar.php");
+		}else{
+			$("#listado").attr("action","preguntas.php");
+		}
 		$("#listado").submit();
 	});
 	$("#btnDesconectar").click(function(e){
@@ -84,7 +89,7 @@ $( document ).ready(function() {
 				<div class="panel-heading">
 					<h3 class="panel-title"><b>OPCIONS GENERALS</b></h3>
 				</div>
-				<form id="listado" name="listado" method="post" action="preguntas.php">
+				<form id="listado" name="listado" method="post">
 				<input type="hidden" id="codigo" name="codigo">
 				<input type="hidden" id="apartado" name="apartado">
 				</form>
@@ -103,8 +108,8 @@ $( document ).ready(function() {
 								$_SESSION["responsable"] = "SI";
 							}								
 							$texto = $conexio->consultar("MESTREPR.ZON",$valor);
-							if( $texto <> "" and $visible == "SI" and $valor == 1 ){
-								echo '<li class="list-group-item" apartado="'.$valor.'" id="apart_'.$valor.'" name="apart_'.$valor.'"><b>'.$texto.'</b></li>';
+							if( $texto <> "" and $visible == "SI" and ($valor == 1 or $valor == 8) ){
+								echo '<li class="list-group-item" style="cursor:pointer;" apartado="'.$valor.'" id="apart_'.$valor.'" name="apart_'.$valor.'"><b>'.$texto.'</b></li>';
 							}						
 						} 
 ?>
@@ -115,7 +120,7 @@ $( document ).ready(function() {
 				<div class="panel-heading">
 					<h3 class="panel-title"><b>OPCIONS PROGRAMACIO</b></h3>
 				</div>
-				<form id="listado" name="listado" method="post" action="preguntas.php">
+				<form id="listado" name="listado" method="post">
 				<input type="hidden" id="codigo" name="codigo">
 				<input type="hidden" id="apartado" name="apartado">
 				</form>
@@ -134,14 +139,45 @@ $( document ).ready(function() {
 								$_SESSION["responsable"] = "SI";
 							}								
 							$texto = $conexio->consultar("MESTREPR.ZON",$valor);
-							if( $texto <> "" and $visible == "SI" and $valor <> 1 ){
-								echo '<li class="list-group-item" apartado="'.$valor.'" id="apart_'.$valor.'" name="apart_'.$valor.'"><b>'.$texto.'</b></li>';
+							if( $texto <> "" and $visible == "SI" and $valor <> 1 and $valor <> 7 and $valor <> 8 ){
+								echo '<li class="list-group-item" style="cursor:pointer;" apartado="'.$valor.'" id="apart_'.$valor.'" name="apart_'.$valor.'"><b>'.$texto.'</b></li>';
 							}						
 						} 
 ?>
 					</ul>
 				</div>
 			</div>
+			<!--<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title"><b>OPCIONS FITXERS</b></h3>
+				</div>
+				<form id="listado" name="listado" method="post">
+				<input type="hidden" id="codigo" name="codigo">
+				<input type="hidden" id="apartado" name="apartado">
+				</form>
+				<div class="panel-body">
+					<ul class="list-group">
+< ?php 
+						$_SESSION["modificar_programador"] = "NO";
+						$_SESSION["responsable"] = "NO";
+						for($ii=0;$ii<$num_opcions;$ii++){ 
+							$valor = $opcions_llistat[$ii];
+							$visible = $visible_llistat[$ii]; 
+							if( $valor == "5" ){
+								$_SESSION["modificar_programador"] = "SI";
+							}
+							if( $valor == "6" ){
+								$_SESSION["responsable"] = "SI";
+							}								
+							$texto = $conexio->consultar("MESTREPR.ZON",$valor);
+							if( $texto <> "" and $visible == "SI" and $valor == 7 ){
+								echo '<li class="list-group-item" style="cursor:pointer;" apartado="'.$valor.'" id="apart_'.$valor.'" name="apart_'.$valor.'"><b>'.$texto.'</b></li>';
+							}						
+						} 
+? >
+					</ul>
+				</div>
+			</div>-->
 		</div>
 	</div>
 	<div class="modal fade" id="#mydesconectar">

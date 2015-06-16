@@ -80,7 +80,6 @@ $( document ).ready(function(){
     });
 	$("#irlistado").click(function(e){
 		e.preventDefault();
-		//$(location).attr("href","listado.php");
 		$("#tareas").attr("method","post");
 		$("#tareas").attr("action","preguntas.php");
 		$("#tareas").submit();
@@ -97,12 +96,12 @@ $( document ).ready(function(){
 		$("#tareas").attr("action","procesar.php");
 		$("#tareas").submit();
 	});
-	/* *********** */
-	
+	/* *********** */	
 	if(!window.Fitxer){
 		Fitxer = {};
 	}	
 	Fitxer.Selector = {};
+	/* Seleccionar texto */
 	Fitxer.Selector.getSelected = function(){
 		var texto = '';
 		if(window.getSelection){
@@ -113,7 +112,16 @@ $( document ).ready(function(){
 			texto = document.selection.createRange().text;
 		}
 		return texto;
-	}	
+	}
+	/* DesSeleccionar texto */
+	Fitxer.Selector.getDesSelected = function(){
+		if (document.selection)
+			document.selection.empty();
+		else if (window.getSelection)
+			window.getSelection().removeAllRanges();
+		textoSeleccionado = "";
+	}
+	/* Buscar contenido del Fichero Seleccionado y después Quitar seleccion */
 	Fitxer.Selector.mouseup = function(){
 		var textoSeleccionado = Fitxer.Selector.getSelected();
 		if( textoSeleccionado != "" ){
@@ -123,11 +131,16 @@ $( document ).ready(function(){
   				data: "fitxer="+textoSeleccionado,
   				type: "post",
   				success: function(json) {
-					if( json == "" || json == undefined ){
-						alert("El fichero ["+textoSeleccionado+"] no tiene desglose creado.");
-					}else{
-    					alert("El fichero ["+textoSeleccionado+"] "+json);
-					}
+					 if( json == "tancar" ){
+					 }else{ 
+						if( json == "" || json == undefined ){
+							alert("El fichero ["+textoSeleccionado+"] no tiene desglose creado.");
+						}else{
+							$("#contenido").html(json);
+							$("#mydesglossament").modal("show");
+							json = "tancar";
+						}
+					 }					
   				},
   				error:function (xhr, ajaxOptions, thrownError) {
     				alert("Error en el proceso de busqueda. Vuelva a intentarlo más tarde.");
@@ -136,6 +149,19 @@ $( document ).ready(function(){
 		}
 	}
 	$(document).bind("mouseup", Fitxer.Selector.mouseup);
+	$("#btnTancarDesgl").click(function(e){
+		e.preventDefault();
+		//* Ocultar emergente -Guardar-
+		$("#mydesglossament").modal("hide");
+		//* Quitar Seleccion
+		Fitxer.Selector.getDesSelected();
+	});
+});
+$( window ).load(function() {
+	/* Si el codigo es 8, ocultar boton guardar */
+	if( $("#codigo").val() == 8 ){
+		$("#irguardar").hide();
+	}
 });
 </script>
 <style rel="stylesheet">body{padding-top: 70px;padding-bottom: 30px;}</style>
@@ -148,12 +174,6 @@ $( document ).ready(function(){
 		</div>
     	<div class="navbar-collapse collapse">
       		<ul class="nav navbar-nav navbar-right">
-				<?php if( $codigo == 2 or $codigo == 3 or $codigo == 4 ){ ?>
-	        	<li id="modal">
-	        		<button class="btn btn-info btn-lg" id="irFitxers"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;Veure Fitxers</button>
-	        	</li>
-	        	<li>&nbsp;</li>
-				<?php } ?> 
 	        	<li id="modal0">
 	        		<button class="btn btn-primary btn-lg" id="irlistado"><span class="glyphicon glyphicon-list"></span>&nbsp;Llistat</button>
 	        	</li>
@@ -252,7 +272,7 @@ $( document ).ready(function(){
 						<input type="text" class="form-control" id="2_compte" name="2_compte" tabindex="4" value="<?=$array_opcions[9]?>">
 					</div><br>
 					<div class="input-group">
-						<p><b>Seleccione amb doble click un fitxer: </b><?=$array_opcions[10]?></p>						
+						<p><b>Seleccioneu un Fitxer per Veure el seu desglossament: </b><?=$array_opcions[10]?></p>						
 					</div><br>
 					<div class="input-group">
 						<span class="input-group-addon"><b>Fitxers</b></span>
@@ -353,6 +373,22 @@ $( document ).ready(function(){
 				<div class="modal-footer">
 					<button type="button" class="btn btn-success btn-lg" id="btnGuardar">&nbsp;&nbsp;&nbsp;SI&nbsp;&nbsp;&nbsp;</button>
 					<button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">&nbsp;&nbsp;&nbsp;NO&nbsp;&nbsp;&nbsp;</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="mydesglossament">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title text-primary"><b>DESGLOSSAMENT FITXER</b></h4>
+				</div>
+				<div class="modal-body">
+					<label id="contenido"></label>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger btn-lg" id="btnTancarDesgl">&nbsp;&nbsp;&nbsp;TANCAR&nbsp;&nbsp;&nbsp;</button>
 				</div>
 			</div>
 		</div>

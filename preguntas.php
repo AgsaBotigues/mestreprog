@@ -49,10 +49,12 @@ $( document ).ready(function(){
 	$("#apart_1").hide();
 	$("#apart_2").hide();
 	/* Hacer visible la que se reciba por parametro */
-	if( $("#codigo").val() == 2 || $("#codigo").val() == 3 || $("#codigo").val() == 4 ){
+	var code = $("#codigo").val();
+	if( code == 2 || code == 3 || code == 4 || (code == 8) ){
 		$("#apart_2").show();
+		$("#irguardar").hide();
 	}else{
-		$("#apart_"+$("#codigo").val()).show();
+		$("#apart_"+code).show();
 	}
 	/* Ini Calendario */
 	window.prettyPrint && prettyPrint();
@@ -86,7 +88,9 @@ $( document ).ready(function(){
 				//* 2. Ocultar botones
 				$("#irresetear").hide();
 				$("#irlistado").hide();
-				//* 3. Mandar formulario para guardar en Universe
+				//* 3. Canvi valors
+				$("#1_quidemana").attr("value",$("#user").val());
+				//* 4. Mandar formulario para guardar en Universe
 				$("#irguardar").html("<span class='glyphicon glyphicon-refresh'></span>&nbsp;<b>Guardando...</b>");
 				$("#preguntas").attr("method","post");
 				$("#preguntas").attr("action","procesar.php");
@@ -106,7 +110,7 @@ $( document ).ready(function(){
 $( window ).load(function() {
 	$("#titulo").html("<h3 class='panel-title'><b>" + $("#apartado").val() + "</b></h3>");
 	/* Si el apartado es de programacio, ocultar el boton de guardar */
-	if( $("#codigo").val() == 2 ){
+	if( $("#codigo").val() == 2 || $("#codigo").val() == 8 ){
 		$("#modal4").hide();
 	}
 });
@@ -136,6 +140,7 @@ $( window ).load(function() {
 <input type="hidden" name="codigo" id="codigo" value="<?=$codigo?>">
 <input type="hidden" name="apartado" id="apartado" value="<?=$apartado?>">
 <input type="hidden" name="tarea" id="tarea">
+<input type="hidden" name="user" id="user" value="<?=$_SESSION["user"]?>">
 </form>
 <div class="container theme-showcase">
 	<div class="row">
@@ -146,7 +151,7 @@ $( window ).load(function() {
 				<div class="panel-body" id="apart_1">
 					<div class="input-group" id="txt_1">
 						<span class="input-group-addon"><b>Qui ho demana</b></span>
-						<input type="text" class="form-control" placeholder="" name="1_quidemana" id="1_quidemana" tabindex="1">
+						<input type="text" class="form-control" placeholder="<?=$_SESSION["user.connect"]?>" readonly name="1_quidemana" id="1_quidemana" tabindex="-1">
 					</div><br>
 					<div class="input-group" id="txt_2">
 						<span class="input-group-addon"><b>Dia Peticio</b></span>
@@ -184,7 +189,7 @@ $( window ).load(function() {
 							if( $tarea <> "" ){
 								$nref = $array_opcions[$ii];
 								$array = explode(chr(254),$tarea);							
-								echo '<li class="list-group-item" id="tarea_'.$nref.'" name="tarea_'.$nref.'">';
+								echo '<li class="list-group-item" style="cursor:pointer;" id="tarea_'.$nref.'" name="tarea_'.$nref.'">';
 								echo '- Num. Peticio: <b>'.$array_opcions[$ii].'</b><br>- Realizat per: <b>'.$array[0].'</b><br>- Data: <b>'.$array[1].'</b><br>';
 								echo '- Tarea: <b>'.$array[2].'</b>';
 								echo '</li>';
