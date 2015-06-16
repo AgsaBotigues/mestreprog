@@ -154,7 +154,7 @@ $( window ).load(function() {
 					<div class="input-group" id="txt_2">
 						<span class="input-group-addon"><b>Dia Peticio</b></span>
 						<input type="hidden" id="actual" name="actual" value="<?=$fechahoy?>">
-						<input type="text" class="form-control" data-date="today" name="1_diapeticio" id="1_diapeticio" readonly tabindex="-1">
+						<input type="text" class="form-control" style="cursor:pointer;" data-date="today" name="1_diapeticio" id="1_diapeticio" readonly tabindex="-1">
 					</div><br>
 					<div class="input-group" id="txt_3">
 						<span class="input-group-addon"><b>Que ha de fer el programa</b></span>

@@ -161,6 +161,7 @@ $( window ).load(function() {
 	/* Si el codigo es 8, ocultar boton guardar */
 	if( $("#codigo").val() == 8 ){
 		$("#irguardar").hide();
+		$("#ompliresp").hide();
 	}
 });
 </script>
@@ -199,6 +200,50 @@ $( window ).load(function() {
 				$tar = $conexio->consultar("MESTREPR",$tarea);
 				if( $tar <> "" ){
 					$array_opcions = explode(chr(254),$tar);
+					
+					$programes = "";
+					$compte = "";
+					$fitxers = "";
+					$procesos = "";
+					$menu = "";
+					$temps = "";
+					$dificultad = "";
+					$diainici = "";
+					$diafinal = "";
+					$diapremes = "";
+					$proves = "";
+					$obs_proves = "";
+					$temps_real = "";
+					$diaacabat = "";
+					$reduccio = "";
+					$obs = "";
+					$inventiu = "";
+					$repartiment = "";
+					$seguiment = "";
+					
+					for($ii=0;$ii<26;$ii++){ 					
+						if( array_key_exists($ii,$array_opcions) ){
+							$ii==8?$programes=$array_opcions[8]:"";
+							$ii==9?$compte=$array_opcions[9]:"";
+							$ii==10?$fitxers=$array_opcions[10]:"";
+							$ii==10?$procesos=$array_opcions[10]:"";
+							$ii==11?$menu=$array_opcions[12]:"";
+							$ii==12?$temps=$array_opcions[12]:"";
+							$ii==13?$dificultad=$array_opcions[13]:"";
+							$ii==14?$diainici=$array_opcions[14]:"";
+							$ii==15?$diafinal=$array_opcions[15]:"";
+							$ii==16?$diapremes=$array_opcions[16]:"";
+							$ii==17?$proves=$array_opcions[17]:"";
+							$ii==18?$obs_proves=$array_opcions[18]:"";
+							$ii==19?$temps_real=$array_opcions[19]:"";
+							$ii==20?$diaacabat=$array_opcions[20]:"";
+							$ii==21?$reduccio=$array_opcions[21]:"";
+							$ii==22?$obs=$array_opcions[22]:"";
+							$ii==23?$inventiu=$array_opcions[23]:"";
+							$ii==24?$repartiment=$array_opcions[24]:"";
+							$ii==25?$seguiment=$array_opcions[25]:"";
+						}
+					}					
 ?>
 					<div class="input-group">
 						<span class="input-group-addon"><b>Qui ho demana</b></span>
@@ -265,94 +310,94 @@ $( window ).load(function() {
 					</div><br>
 					<div class="input-group">
 						<span class="input-group-addon"><b>Programes</b></span>
-						<input type="text" class="form-control" id="2_programes" name="2_programes" tabindex="3" value="<?=$array_opcions[8]?>">
+						<input type="text" class="form-control" id="2_programes" name="2_programes" tabindex="3" value="<?=$programes?>">
 					</div><br>
 					<div class="input-group">
 						<span class="input-group-addon"><b>Compte on esta</b></span>
-						<input type="text" class="form-control" id="2_compte" name="2_compte" tabindex="4" value="<?=$array_opcions[9]?>">
+						<input type="text" class="form-control" id="2_compte" name="2_compte" tabindex="4" value="<?=$compte?>">
 					</div><br>
 					<div class="input-group">
-						<p><b>Seleccioneu un Fitxer per Veure el seu desglossament: </b><?=$array_opcions[10]?></p>						
+						<p><b>Seleccioneu un Fitxer per Veure el seu desglossament: </b><?=$fitxers?></p>						
 					</div><br>
 					<div class="input-group">
 						<span class="input-group-addon"><b>Fitxers</b></span>
-						<input type="text" class="form-control" id="2_fitxers" name="2_fitxers" tabindex="5" value="<?=$array_opcions[10]?>">						
+						<input type="text" class="form-control" id="2_fitxers" name="2_fitxers" tabindex="5" value="<?=$fitxers?>">						
 					</div><br>
 					<div class="input-group">
 						<span class="input-group-addon"><b>Procesos</b></span>
-						<input type="text" class="form-control" id="2_procesos" name="2_procesos" tabindex="6" value="<?=$array_opcions[11]?>">
+						<input type="text" class="form-control" id="2_procesos" name="2_procesos" tabindex="6" value="<?=$procesos?>">
 					</div><br>
 					<div class="input-group">
 						<span class="input-group-addon"><b>Menu</b></span>
-						<input type="text" class="form-control" id="2_menu" name="2_menu" tabindex="7" value="<?=$array_opcions[12]?>">
+						<input type="text" class="form-control" id="2_menu" name="2_menu" tabindex="7" value="<?=$menu?>">
 					</div><br>
 					<div class="input-group">
 						<span class="input-group-addon"><b>Temps previst</b></span>
-						<input type="text" class="form-control" id="2_temps" name="2_temps" tabindex="8" value="<?=$array_opcions[13]?>">
+						<input type="text" class="form-control" id="2_temps" name="2_temps" tabindex="8" value="<?=$temps?>">
 					</div><br>
 					<div class="input-group">
 						<span class="input-group-addon"><b>Dificultat (0 a 5)</b></span>
-						<input type="text" class="form-control" id="2_dificultad" name="2_dificultad" tabindex="9" value="<?=$array_opcions[14]?>">
+						<input type="text" class="form-control" id="2_dificultad" name="2_dificultad" tabindex="9" value="<?=$dificultad?>">
 					</div><br>
 					<div class="input-group">
 						<span class="input-group-addon"><b>Dia inici</b></span>
-						<input type="hidden" id="inici" name="inici" value="<?= $array_opcions[15]?>">
+						<input type="hidden" id="inici" name="inici" value="<?= $diainici?>">
 						<input type="text" class="form-control" data-date="today" name="2_diainici" id="2_diainici" readonly tabindex="-1">
 					</div><br>
 					<div class="input-group">
 						<span class="input-group-addon"><b>Dia final</b></span>
-						<input type="hidden" id="final" name="final" value="<?= $array_opcions[16]?>">
+						<input type="hidden" id="final" name="final" value="<?= $diafinal?>">
 						<input type="text" class="form-control" data-date="today" name="2_diafinal" id="2_diafinal" readonly tabindex="-1">
 					</div><br>
 					<div class="input-group has-error">
 						<span class="input-group-addon"><b>Dia Premes</b></span>
-						<input type="hidden" id="premes" name="premes" value="<?= $array_opcions[26]?>">
+						<input type="hidden" id="premes" name="premes" value="<?= $diapremes?>">
 						<input type="text" class="form-control" data-date="today" name="2_diapremes" id="2_diapremes" readonly tabindex="-1">
 					</div><br>
 					<div class="input-group">
 						<span class="input-group-addon"><b>Proves</b></span>
-						<input type="text" class="form-control" id="2_proves" name="2_proves" tabindex="12" value="<?=$array_opcions[17]?>">
+						<input type="text" class="form-control" id="2_proves" name="2_proves" tabindex="12" value="<?=$proves?>">
 					</div><br>
 					<div class="input-group">
 						<span class="input-group-addon"><b>Observacions Proves</b></span>
-						<textarea rows="3" class="form-control" id="2_obs_proves" name="2_obs_proves" tabindex="13"><?=$array_opcions[18]?></textarea>
+						<textarea rows="3" class="form-control" id="2_obs_proves" name="2_obs_proves" tabindex="13"><?=$obs_proves?></textarea>
 					</div><br>
 					<div class="input-group">
 						<span class="input-group-addon"><b>Temps real</b></span>
-						<input type="text" class="form-control" id="2_temps_real" name="2_temps_real" tabindex="14" value="<?=$array_opcions[19]?>">
+						<input type="text" class="form-control" id="2_temps_real" name="2_temps_real" tabindex="14" value="<?=$temps_real?>">
 					</div><br>
 					<div class="input-group">
 						<span class="input-group-addon"><b>Dia acabat i posat en marxa</b></span>
-						<input type="hidden" id="acabat" name="acabat" value="<?= $array_opcions[20]?>">
+						<input type="hidden" id="acabat" name="acabat" value="<?= $diaacabat?>">
 						<input type="text" class="form-control" data-date="today" name="2_diaacabat" id="2_diaacabat" readonly tabindex="-1">
 					</div><br>
 					<div class="input-group">
 						<span class="input-group-addon"><b>Reduccio despeses</b></span>
-						<input type="text" class="form-control" id="2_reduccio" name="2_reduccio" tabindex="15" value="<?=$array_opcions[21]?>">
+						<input type="text" class="form-control" id="2_reduccio" name="2_reduccio" tabindex="15" value="<?=$reduccio?>">
 					</div><br>
 					<div class="input-group">
 						<span class="input-group-addon"><b>Observacions</b></span>
-						<textarea rows="3" class="form-control" id="2_obs" name="2_obs" tabindex="16"><?=$array_opcions[22]?></textarea>
+						<textarea rows="3" class="form-control" id="2_obs" name="2_obs" tabindex="16"><?=$obs?></textarea>
 					</div>
 				</div>
 			</div>
 <?php
 					if( $_SESSION["responsable"] == "SI" ){
 ?>
-			<div class="panel panel-danger">
+			<div class="panel panel-danger" id="ompliresp">
 				<div class="panel-heading" id="titulo"><b>Omplir per el responsable</b></div>
 				<div class="panel-body">
 					<div class="input-group" id="txt_1">
 						<span class="input-group-addon"><b>Incentiu &euro;</b></span>
-						<input type="text" class="form-control" placeholder="" name="3_inventiu" id="3_inventiu" tabindex="17" value="<?=$array_opcions[23]?>">
+						<input type="text" class="form-control" placeholder="" name="3_inventiu" id="3_inventiu" tabindex="17" value="<?=$inventiu?>">
 					</div><br>
 					<div class="input-group" id="txt_1">
 						<span class="input-group-addon"><b>Repartiment &#37;</b></span>
-						<input type="text" class="form-control" placeholder="" name="3_repartiment" id="3_repartiment" tabindex="18" value="<?=$array_opcions[24]?>">
+						<input type="text" class="form-control" placeholder="" name="3_repartiment" id="3_repartiment" tabindex="18" value="<?=$repartiment?>">
 					</div><br>
 					<div class="input-group" id="txt_1">
 						<span class="input-group-addon"><b>Seguiment</b></span>
-						<input type="text" class="form-control" placeholder="" name="3_seguiment" id="3_seguiment" tabindex="19" value="<?=$array_opcions[25]?>">
+						<input type="text" class="form-control" placeholder="" name="3_seguiment" id="3_seguiment" tabindex="19" value="<?=$seguiment?>">
 					</div>
 				</div>
 			</div>
