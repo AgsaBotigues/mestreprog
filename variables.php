@@ -13,7 +13,7 @@ $_SESSION["responsable"] = "NO";
 $_SESSION["user.connect"] = "";
 $_SESSION["user.dpto"] = "";
 $_SESSION["user.seccio"] = "";
-/* Redirect a menu.php para elegir el tipo de auditoria */
+/* Redirect a listado.php para elegir el tipo de auditoria */
 $host = $_SERVER["HTTP_HOST"];
 $uri = rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
 $extra = "listado.php";
