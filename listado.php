@@ -180,7 +180,7 @@ $( document ).ready(function() {
 			</div>-->
 		</div>
 	</div>
-	<div class="modal fade" id="#mydesconectar">
+	<div class="modal fade" id="mydesconectar">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
