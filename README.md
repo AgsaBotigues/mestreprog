@@ -1,2 +1,2 @@
 # mestreprog
-Mestre de Programes
+Mestre de Programes i Peticions
