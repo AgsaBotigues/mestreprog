@@ -38,7 +38,7 @@ if( $error != 0 ){
 		$referencia += 1;
 		$conexio->proceso_guardar("CONTROL", "MESTREPR", 1, $referencia);
 		$conexio->desconectar();
-		$destino = "vaciar.php";
+		$destino = "listado.php";
 	}
 	if( $_POST["codigo"] == 2 ){
 		/* Leer el numero de peticio */

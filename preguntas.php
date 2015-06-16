@@ -72,8 +72,7 @@ $( document ).ready(function(){
 		$("#myguardar").modal("hide");
 		/* Comprobar formulario */
 		if( $("#codigo").val() == "1" ){
-			if( $("#1_quidemana").val()=="" || $("#1_diapeticio").val()=="" || $("#1_descrip").val()=="" || $("#1_obs").val()=="" || $("#1_reduccio").val()==""  ){
-				$("#1_quidemana").val()=="" ? $("#txt_1").addClass("has-error") : $("#txt_1").removeClass("has-error");
+			if( $("#1_diapeticio").val()=="" || $("#1_descrip").val()=="" || $("#1_obs").val()=="" || $("#1_reduccio").val()==""  ){
 				$("#1_diapeticio").val()=="" ? $("#txt_2").addClass("has-error") : $("#txt_2").removeClass("has-error");
 				$("#1_descrip").val()=="" ? $("#txt_3").addClass("has-error") : $("#txt_3").removeClass("has-error");
 				$("#1_obs").val()=="" ? $("#txt_4").addClass("has-error") : $("#txt_4").removeClass("has-error");
@@ -141,7 +140,6 @@ $( window ).load(function() {
 <input type="hidden" name="apartado" id="apartado" value="<?=$apartado?>">
 <input type="hidden" name="tarea" id="tarea">
 <input type="hidden" name="user" id="user" value="<?=$_SESSION["user"]?>">
-</form>
 <div class="container theme-showcase">
 	<div class="row">
 		<div class="col-sm-12">
@@ -175,6 +173,7 @@ $( window ).load(function() {
 						<textarea class="form-control" rows="2" id="1_adjuntos" name="1_adjuntos" tabindex="5"></textarea>
 					</div>
 				</div>
+				</form>
 				<div class="panel-body" id="apart_2">
 					<ul class="list-group">
 <?php
