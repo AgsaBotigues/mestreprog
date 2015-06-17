@@ -90,7 +90,7 @@ $( document ).ready(function() {
 		<div class="col-sm-12">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<h3 class="panel-title"><b>OPCIONS GENERALS</b></h3>
+					<h3 class="panel-title"><b>MENU OPCIONS GENERALS</b></h3>
 				</div>
 				<form id="listado" name="listado" method="post">
 				<input type="hidden" id="codigo" name="codigo">
@@ -130,7 +130,7 @@ $( document ).ready(function() {
 			</div>
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title"><b>OPCIONS PROGRAMACIO</b></h3>
+					<h3 class="panel-title"><b>MENU OPCIONS PROGRAMACIO</b></h3>
 				</div>
 				<form id="listado" name="listado" method="post">
 				<input type="hidden" id="codigo" name="codigo">
@@ -170,7 +170,7 @@ $( document ).ready(function() {
 			</div>
 			<!--<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title"><b>OPCIONS FITXERS</b></h3>
+					<h3 class="panel-title"><b>MENU OPCIONS FITXERS</b></h3>
 				</div>
 				<form id="listado" name="listado" method="post">
 				<input type="hidden" id="codigo" name="codigo">
