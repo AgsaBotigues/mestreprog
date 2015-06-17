@@ -358,7 +358,7 @@ $( window ).load(function() {
 						<input type="text" class="form-control" style="cursor:pointer;" data-date="today" name="2_diafinal" id="2_diafinal" readonly tabindex="-1">
 					</div><br>
 					<div class="input-group has-error">
-						<span class="input-group-addon"><b>Dia Premes</b></span>
+						<span class="input-group-addon"><b>Dia final acordado</b></span>
 						<input type="hidden" id="premes" name="premes" value="<?= $diapremes?>">
 						<input type="text" class="form-control" style="cursor:pointer;" data-date="today" name="2_diapremes" id="2_diapremes" readonly tabindex="-1">
 					</div><br>
