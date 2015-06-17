@@ -231,15 +231,16 @@ $( window ).load(function() {
 					
 					for($ii=0;$ii<26;$ii++){ 					
 						if( array_key_exists($ii,$array_opcions) ){
+							echo $ii." ".$array_opcions[$ii]."<br>";
 							$ii==6?$programador1=$array_opcions[6]:"";
 							$ii==7?$programador2=$array_opcions[7]:"";
 							$ii==8?$programes=$array_opcions[8]:"";
 							$ii==9?$compte=$array_opcions[9]:"";
 							$ii==10?$fitxers=$array_opcions[10]:"";
-							$ii==10?$procesos=$array_opcions[10]:"";
+							$ii==10?$procesos=$array_opcions[11]:"";
 							$ii==11?$menu=$array_opcions[12]:"";
-							$ii==12?$temps=$array_opcions[12]:"";
-							$ii==13?$dificultad=$array_opcions[13]:"";
+							$ii==13?$temps=$array_opcions[13]:"";
+							$ii==14?$dificultad=$array_opcions[14]:"";
 							$ii==14?$diainici=$array_opcions[14]:"";
 							$ii==15?$diafinal=$array_opcions[15]:"";
 							$ii==16?$diapremes=$array_opcions[16]:"";
