@@ -231,7 +231,6 @@ $( window ).load(function() {
 					
 					for($ii=0;$ii<26;$ii++){ 					
 						if( array_key_exists($ii,$array_opcions) ){
-							echo $ii." ".$array_opcions[$ii]."<br>";
 							$ii==6?$programador1=$array_opcions[6]:"";
 							$ii==7?$programador2=$array_opcions[7]:"";
 							$ii==8?$programes=$array_opcions[8]:"";
