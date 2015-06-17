@@ -165,6 +165,10 @@ $( window ).load(function() {
 		$("#irguardar").hide();
 		$("#ompliresp").hide();
 	}
+	/* Si es una tarea acabada, no permitir modificar dades */
+	if( $("#codigo").val() == 4 ){
+		$("#irguardar").hide();
+	}
 });
 </script>
 <style rel="stylesheet">body{padding-top: 70px;padding-bottom: 30px;}</style>
