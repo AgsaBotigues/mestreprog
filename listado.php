@@ -146,16 +146,14 @@ $( document ).ready(function() {
 							for($ii=0;$ii<$num_opcions;$ii++){ 
 								$valor = $opcions_llistat[$ii];
 								$visible = $visible_llistat[$ii]; 
-								//if( $valor == "4" ){
 								if( $valor == "5" and $visible == "SI" ){
 									$_SESSION["modificar_programador"] = "SI";
 								}
-								//if( $valor == "5" ){
 								if( $valor == "6" and $visible == "SI" ){
 									$_SESSION["responsable"] = "SI";
 								}
 								$texto = $conexio->consultar("MESTREPR.ZON",$valor);
-								if( $texto <> "" and $visible == "SI" and $valor <> 1 and $valor <> 7 and $valor <> 8 ){
+								if( $texto <> "" and $visible == "SI" and ($valor == 2 or $valor == 3 or $valor == 4) ){
 									echo '<li class="list-group-item" style="cursor:pointer;" apartado="'.$valor.'" id="apart_'.$valor.'" name="apart_'.$valor.'"><b>'.$texto.'</b></li>';
 									$nm += 1;
 								}
