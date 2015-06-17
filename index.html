@@ -21,8 +21,11 @@
 <script type="text/javascript" language="javascript">
 	$( document ).ready(function() {
 		/* Validacio del formulari */
-		$('#btnAcceder').click(function(e){
-			e.preventDefault();
+		if(!window.Validar){
+			Validar = {};
+		}	
+		Validar.Formulario = {};
+		Validar.Formulario = function(){
 			user = $("#user").val();
 			pss = $("#pass").val();
 			if( user == "" || pss == "" ){
@@ -38,7 +41,18 @@
 				$("#btnAcceder").html("<b>Espere si us plau, comprovant dades...</b>");
 				$("#inici").submit();
 			}
+		}
+		
+		$("#btnAcceder").click(function(e){
+			e.preventDefault();
+			Validar.Formulario();
 		});
+		$(document).keypress(function(e){   
+    		if(e.which == 13){
+				e.preventDefault();
+				Validar.Formulario();
+    		}
+ 		});
 		/* Rellenar texto boton con negrita */
 		$("#btnAcceder").html("<b>Acceder</b>");
 		/* Focus al iniciar formulario */
@@ -58,7 +72,7 @@
 				return $.getUrlVars()[name];
 			} 
 		});
-		//error 80011, 80019 - error conection SUN		
+		//error 80011, 80019, 81015 - error conection SUN		
 		var err = $.getUrlVar('error'); 
     	if( err != "" && err != undefined ){
     		$("#txtUsun").addClass("has-error");
@@ -66,15 +80,13 @@
 		}
 	});
 </script>
-<style>
-body{padding-top:70px;padding-bottom:30px;}
-</style>
+<style>body{padding-top:70px;padding-bottom:30px;}</style>
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="container">
 		<div class="navbar-header">
-			<p class="navbar-text"><b>PETICIONS DE PROGRAMES</b></p>
+			<p class="navbar-text"><b>MESTRE DE PROGRAMES</b></p>
 		</div>
 	</div>
 </div>
