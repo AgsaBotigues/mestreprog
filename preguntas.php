@@ -124,7 +124,7 @@ $( window ).load(function() {
     	<div class="navbar-collapse collapse">
       		<ul class="nav navbar-nav navbar-right"> 
 	        	<li id="modal0">
-	        		<button class="btn btn-primary btn-lg" id="irlistado"><span class="glyphicon glyphicon-home"></span>&nbsp;Menu</button>
+	        		<button class="btn btn-primary btn-lg" id="irlistado"><span class="glyphicon glyphicon-home"></span>&nbsp;Menu Opcions</button>
 	        	</li>
 	        	<li>&nbsp;</li>
         		<li id="modal4">
