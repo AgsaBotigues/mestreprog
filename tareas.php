@@ -165,7 +165,7 @@ $( window ).load(function() {
 		$("#irguardar").hide();
 		$("#ompliresp").hide();
 	}
-	/* Si es una tarea acabada, no permitir modificar dades */
+	/* Si son tareas acabats no permeter modificar dades */
 	if( $("#codigo").val() == 4 ){
 		$("#irguardar").hide();
 	}
@@ -182,7 +182,7 @@ $( window ).load(function() {
     	<div class="navbar-collapse collapse">
       		<ul class="nav navbar-nav navbar-right">
 	        	<li id="modal0">
-	        		<button class="btn btn-primary btn-lg" id="irlistado"><span class="glyphicon glyphicon-list"></span>&nbsp;Llistat</button>
+	        		<button class="btn btn-primary btn-lg" id="irlistado"><span class="glyphicon glyphicon-list"></span>&nbsp;Llistat Tasques</button>
 	        	</li>
 	        	<li>&nbsp;</li>
         		<li id="modal4">
@@ -207,6 +207,8 @@ $( window ).load(function() {
 				if( $tar <> "" ){
 					$array_opcions = explode(chr(254),$tar);
 					
+					$programador1 = "";
+					$programador2 = "";
 					$programes = "";
 					$compte = "";
 					$fitxers = "";
@@ -229,6 +231,8 @@ $( window ).load(function() {
 					
 					for($ii=0;$ii<26;$ii++){ 					
 						if( array_key_exists($ii,$array_opcions) ){
+							$ii==6?$programador1=$array_opcions[6]:"";
+							$ii==7?$programador2=$array_opcions[7]:"";
 							$ii==8?$programes=$array_opcions[8]:"";
 							$ii==9?$compte=$array_opcions[9]:"";
 							$ii==10?$fitxers=$array_opcions[10]:"";
@@ -283,6 +287,7 @@ $( window ).load(function() {
 					<div class="input-group">
 						<span class="input-group-addon"><b>Programador 1</b></span>
 						<select class="form-control" id="2_programador_1" name="2_programador_1" tabindex="1" <?php if($_SESSION["modificar_programador"] == "NO"){ echo "disabled"; }?> >
+							<option value=""></option>
 <?php
 					$usr = $conexio->leer_usuarios("MESTREPR.USR");
 					if( $usr <> "" ){
@@ -290,16 +295,21 @@ $( window ).load(function() {
 						$partes0 = explode(chr(253),$partes[0]);
 						$partes1 = explode(chr(253),$partes[1]);
 						$nopc = count($partes1);
-						for($ii=0;$ii<$nopc;$ii++){ 
-							echo '<option value="'.$partes0[$ii].'"'.($partes0[$ii]==$array_opcions[6]?"selected":"").'>'.$partes1[$ii].'</option>';
+						for($ii=0;$ii<$nopc;$ii++){
+							if( !empty($programador1) ){ 
+								echo '<option value="'.$partes0[$ii].'"'.($partes0[$ii]==$programador1?"selected":"").'>'.$partes1[$ii].'</option>';
+							}else{
+								echo '<option value="'.$partes0[$ii].'">'.$partes1[$ii].'</option>';
+							}
 						}
-					}
+					}					
 ?>
 						</select>
 					</div><br>
 					<div class="input-group">
 						<span class="input-group-addon"><b>Programador 2</b></span>
 						<select class="form-control" id="2_programador_2" name="2_programador_2" tabindex="2" <?php if($_SESSION["modificar_programador"] == "NO"){ echo "disabled"; }?> >
+							<option value=""></option>
 <?php
 					$usr = $conexio->leer_usuarios("MESTREPR.USR");
 					if( $usr <> "" ){
@@ -308,7 +318,11 @@ $( window ).load(function() {
 						$partes1 = explode(chr(253),$partes[1]);
 						$nopc = count($partes1);						
 						for($ii=0;$ii<$nopc;$ii++){ 
-							echo '<option value="'.$partes0[$ii].'"'.($partes0[$ii]==$array_opcions[7]?"selected":"").'>'.$partes1[$ii].'</option>';
+							if( !empty($programador1) ){ 
+								echo '<option value="'.$partes0[$ii].'"'.($partes0[$ii]==$programador2?"selected":"").'>'.$partes1[$ii].'</option>';
+							}else{
+								echo '<option value="'.$partes0[$ii].'">'.$partes1[$ii].'</option>';								
+							}
 						}
 					}
 ?>
