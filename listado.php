@@ -48,14 +48,17 @@ if( $error != 0 ){
 <script type="text/javascript" language="javascript">
 $( document ).ready(function() {
 	$('.list-group > li').click(function(){
-		$("#codigo").attr("value",$(this).attr("apartado"));
-		$("#apartado").attr("value",$(this).text());
-		if( $(this).attr("apartado") == 7 ){
-			//$("#listado").attr("action","procesar.php");
-		}else{
-			$("#listado").attr("action","preguntas.php");
+		var valorApartado = $(this).attr("apartado");
+		if( valorApartado != 0 ){
+			$("#codigo").attr("value",valorApartado);
+			$("#apartado").attr("value",$(this).text());
+			if( $(this).attr("apartado") == 7 ){
+				//$("#listado").attr("action","procesar.php");
+			}else{
+				$("#listado").attr("action","preguntas.php");
+			}
+			$("#listado").submit();
 		}
-		$("#listado").submit();
 	});
 	$("#btnDesconectar").click(function(e){
 		e.preventDefault();
@@ -75,7 +78,7 @@ $( document ).ready(function() {
 		</div>
     	<div class="navbar-collapse collapse">
       		<ul class="nav navbar-nav navbar-right">
-        		<li id="modal">
+        		<li id="modal4b">
         			<button class="btn btn-danger btn-lg" id="irdesconectar" data-toggle="modal" data-target="#mydesconectar"><span class="glyphicon glyphicon-off"></span>&nbsp;Desconectar</button>
         		</li>
       		</ul>
@@ -98,20 +101,29 @@ $( document ).ready(function() {
 <?php 
 						$_SESSION["modificar_programador"] = "NO";
 						$_SESSION["responsable"] = "NO";
-						for($ii=0;$ii<$num_opcions;$ii++){ 
-							$valor = $opcions_llistat[$ii];
-							$visible = $visible_llistat[$ii]; 
-							if( $valor == "5" ){
-								$_SESSION["modificar_programador"] = "SI";
+						$nm = 0;
+						if( $num_opcions > 0 ){
+							for($ii=0;$ii<$num_opcions;$ii++){ 
+								$valor = $opcions_llistat[$ii];
+								$visible = $visible_llistat[$ii]; 
+								if( $valor == "5" and $visible == "SI" ){
+									$_SESSION["modificar_programador"] = "SI";
+								}
+								if( $valor == "6" and $visible == "SI" ){
+									$_SESSION["responsable"] = "SI";
+								}
+								$texto = $conexio->consultar("MESTREPR.ZON",$valor);
+								if( $texto <> "" and $visible == "SI" and ($valor == 1 or $valor == 8) ){
+									echo '<li class="list-group-item" style="cursor:pointer;" apartado="'.$valor.'" id="apart_'.$valor.'" name="apart_'.$valor.'"><b>'.$texto.'</b></li>';
+									$nm += 1;
+								}
+							} 
+							if( $nm == 0 ){
+								echo '<li class="list-group-item" apartado="0"><b>No tens acces a ninguna opcio.</b></li>';
 							}
-							if( $valor == "6" ){
-								$_SESSION["responsable"] = "SI";
-							}								
-							$texto = $conexio->consultar("MESTREPR.ZON",$valor);
-							if( $texto <> "" and $visible == "SI" and ($valor == 1 or $valor == 8) ){
-								echo '<li class="list-group-item" style="cursor:pointer;" apartado="'.$valor.'" id="apart_'.$valor.'" name="apart_'.$valor.'"><b>'.$texto.'</b></li>';
-							}						
-						} 
+						}else{
+							echo '<li class="list-group-item" apartado="0"><b>No tens acces a ninguna opcio.</b></li>';
+						}
 ?>
 					</ul>
 				</div>
@@ -129,20 +141,31 @@ $( document ).ready(function() {
 <?php 
 						$_SESSION["modificar_programador"] = "NO";
 						$_SESSION["responsable"] = "NO";
-						for($ii=0;$ii<$num_opcions;$ii++){ 
-							$valor = $opcions_llistat[$ii];
-							$visible = $visible_llistat[$ii]; 
-							if( $valor == "4" ){
-								$_SESSION["modificar_programador"] = "SI";
+						$nm = 0;
+						if( $num_opcions > 0 ){
+							for($ii=0;$ii<$num_opcions;$ii++){ 
+								$valor = $opcions_llistat[$ii];
+								$visible = $visible_llistat[$ii]; 
+								//if( $valor == "4" ){
+								if( $valor == "5" and $visible == "SI" ){
+									$_SESSION["modificar_programador"] = "SI";
+								}
+								//if( $valor == "5" ){
+								if( $valor == "6" and $visible == "SI" ){
+									$_SESSION["responsable"] = "SI";
+								}
+								$texto = $conexio->consultar("MESTREPR.ZON",$valor);
+								if( $texto <> "" and $visible == "SI" and $valor <> 1 and $valor <> 7 and $valor <> 8 ){
+									echo '<li class="list-group-item" style="cursor:pointer;" apartado="'.$valor.'" id="apart_'.$valor.'" name="apart_'.$valor.'"><b>'.$texto.'</b></li>';
+									$nm += 1;
+								}
 							}
-							if( $valor == "5" ){
-								$_SESSION["responsable"] = "SI";
-							}								
-							$texto = $conexio->consultar("MESTREPR.ZON",$valor);
-							if( $texto <> "" and $visible == "SI" and $valor <> 1 and $valor <> 7 and $valor <> 8 ){
-								echo '<li class="list-group-item" style="cursor:pointer;" apartado="'.$valor.'" id="apart_'.$valor.'" name="apart_'.$valor.'"><b>'.$texto.'</b></li>';
-							}						
-						} 
+							if( $nm == 0 ){
+								echo '<li class="list-group-item" apartado="0"><b>No tens acces a ninguna opcio.</b></li>';
+							}
+						}else{
+							echo '<li class="list-group-item" apartado="0"><b>No tens acces a ninguna opcio.</b></li>';
+						}
 ?>
 					</ul>
 				</div>
@@ -160,19 +183,28 @@ $( document ).ready(function() {
 < ?php 
 						$_SESSION["modificar_programador"] = "NO";
 						$_SESSION["responsable"] = "NO";
-						for($ii=0;$ii<$num_opcions;$ii++){ 
-							$valor = $opcions_llistat[$ii];
-							$visible = $visible_llistat[$ii]; 
-							if( $valor == "5" ){
-								$_SESSION["modificar_programador"] = "SI";
+						$nm = 0;
+						if( $num_opcions > 0 ){
+							for($ii=0;$ii<$num_opcions;$ii++){ 
+								$valor = $opcions_llistat[$ii];
+								$visible = $visible_llistat[$ii]; 
+								if( $valor == "5" ){
+									$_SESSION["modificar_programador"] = "SI";
+								}
+								if( $valor == "6" ){
+									$_SESSION["responsable"] = "SI";
+								}
+								$texto = $conexio->consultar("MESTREPR.ZON",$valor);
+								if( $texto <> "" and $visible == "SI" and $valor == 7 ){
+									echo '<li class="list-group-item" style="cursor:pointer;" apartado="'.$valor.'" id="apart_'.$valor.'" name="apart_'.$valor.'"><b>'.$texto.'</b></li>';
+									$nm += 1;
+								}
 							}
-							if( $valor == "6" ){
-								$_SESSION["responsable"] = "SI";
-							}								
-							$texto = $conexio->consultar("MESTREPR.ZON",$valor);
-							if( $texto <> "" and $visible == "SI" and $valor == 7 ){
-								echo '<li class="list-group-item" style="cursor:pointer;" apartado="'.$valor.'" id="apart_'.$valor.'" name="apart_'.$valor.'"><b>'.$texto.'</b></li>';
-							}						
+							if( $nm == 0 ){
+								echo '<li class="list-group-item" apartado="0"><b>No tens acces a ninguna opcio.</b></li>';
+							}
+						}else{
+							echo '<li class="list-group-item" apartado="0"><b>No tens acces a ninguna opcio.</b></li>';
 						} 
 ? >
 					</ul>

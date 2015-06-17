@@ -85,7 +85,6 @@ $( document ).ready(function(){
 				$("#txt_4").removeClass("has-error");
 				$("#txt_5").removeClass("has-error");		
 				//* 2. Ocultar botones
-				$("#irresetear").hide();
 				$("#irlistado").hide();
 				//* 3. Canvi valors
 				$("#1_quidemana").attr("value",$("#user").val());

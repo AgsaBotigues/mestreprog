@@ -75,7 +75,7 @@ $( document ).ready(function(){
         	selectedText = window.getSelection().toString();
         }		
     	//selectedText = document.getSelection();
-		alert("Texto seleccionado: "+selectedText);
+		//alert("Texto seleccionado: "+selectedText);
     	//$("#resultado").html(selectedText);
     });
 	$("#irlistado").click(function(e){
@@ -97,11 +97,12 @@ $( document ).ready(function(){
 		$("#tareas").submit();
 	});
 	/* *********** */	
+	/*
 	if(!window.Fitxer){
 		Fitxer = {};
 	}	
 	Fitxer.Selector = {};
-	/* Seleccionar texto */
+	//* Seleccionar texto 
 	Fitxer.Selector.getSelected = function(){
 		var texto = '';
 		if(window.getSelection){
@@ -113,7 +114,7 @@ $( document ).ready(function(){
 		}
 		return texto;
 	}
-	/* DesSeleccionar texto */
+	//* DesSeleccionar texto 
 	Fitxer.Selector.getDesSelected = function(){
 		if (document.selection)
 			document.selection.empty();
@@ -121,11 +122,11 @@ $( document ).ready(function(){
 			window.getSelection().removeAllRanges();
 		textoSeleccionado = "";
 	}
-	/* Buscar contenido del Fichero Seleccionado y después Quitar seleccion */
+	//* Buscar contenido del Fichero Seleccionado y después Quitar seleccion 
 	Fitxer.Selector.mouseup = function(){
 		var textoSeleccionado = Fitxer.Selector.getSelected();
 		if( textoSeleccionado != "" ){
-			/* Comprobar por ajax que existe el fichero */
+			//* Comprobar por ajax que existe el fichero 
 			$.ajax({
   				url: "busca.php",
   				data: "fitxer="+textoSeleccionado,
@@ -156,6 +157,7 @@ $( document ).ready(function(){
 		//* Quitar Seleccion
 		Fitxer.Selector.getDesSelected();
 	});
+	*/
 });
 $( window ).load(function() {
 	/* Si el codigo es 8, ocultar boton guardar */
@@ -316,9 +318,11 @@ $( window ).load(function() {
 						<span class="input-group-addon"><b>Compte on esta</b></span>
 						<input type="text" class="form-control" id="2_compte" name="2_compte" tabindex="4" value="<?=$compte?>">
 					</div><br>
+					<?php if( !empty($fitxers) and 1==0 ){ ?>
 					<div class="input-group">
-						<p><b>Seleccioneu un Fitxer per Veure el seu desglossament: </b><?=$fitxers?></p>						
+						<p tabindex="-1"><b>Seleccioneu un Fitxer per Veure el seu desglossament: </b><?=$fitxers?></p>						
 					</div><br>
+					<?php } ?>
 					<div class="input-group">
 						<span class="input-group-addon"><b>Fitxers</b></span>
 						<input type="text" class="form-control" id="2_fitxers" name="2_fitxers" tabindex="5" value="<?=$fitxers?>">						
@@ -342,17 +346,17 @@ $( window ).load(function() {
 					<div class="input-group">
 						<span class="input-group-addon"><b>Dia inici</b></span>
 						<input type="hidden" id="inici" name="inici" value="<?= $diainici?>">
-						<input type="text" class="form-control" data-date="today" name="2_diainici" id="2_diainici" readonly tabindex="-1">
+						<input type="text" class="form-control" style="cursor:pointer;" data-date="today" name="2_diainici" id="2_diainici" readonly tabindex="-1">
 					</div><br>
 					<div class="input-group">
 						<span class="input-group-addon"><b>Dia final</b></span>
 						<input type="hidden" id="final" name="final" value="<?= $diafinal?>">
-						<input type="text" class="form-control" data-date="today" name="2_diafinal" id="2_diafinal" readonly tabindex="-1">
+						<input type="text" class="form-control" style="cursor:pointer;" data-date="today" name="2_diafinal" id="2_diafinal" readonly tabindex="-1">
 					</div><br>
 					<div class="input-group has-error">
 						<span class="input-group-addon"><b>Dia Premes</b></span>
 						<input type="hidden" id="premes" name="premes" value="<?= $diapremes?>">
-						<input type="text" class="form-control" data-date="today" name="2_diapremes" id="2_diapremes" readonly tabindex="-1">
+						<input type="text" class="form-control" style="cursor:pointer;" data-date="today" name="2_diapremes" id="2_diapremes" readonly tabindex="-1">
 					</div><br>
 					<div class="input-group">
 						<span class="input-group-addon"><b>Proves</b></span>
@@ -369,7 +373,7 @@ $( window ).load(function() {
 					<div class="input-group">
 						<span class="input-group-addon"><b>Dia acabat i posat en marxa</b></span>
 						<input type="hidden" id="acabat" name="acabat" value="<?= $diaacabat?>">
-						<input type="text" class="form-control" data-date="today" name="2_diaacabat" id="2_diaacabat" readonly tabindex="-1">
+						<input type="text" class="form-control" style="cursor:pointer;" data-date="today" name="2_diaacabat" id="2_diaacabat" readonly tabindex="-1">
 					</div><br>
 					<div class="input-group">
 						<span class="input-group-addon"><b>Reduccio despeses</b></span>
@@ -389,11 +393,11 @@ $( window ).load(function() {
 				<div class="panel-body">
 					<div class="input-group" id="txt_1">
 						<span class="input-group-addon"><b>Incentiu &euro;</b></span>
-						<input type="text" class="form-control" placeholder="" name="3_inventiu" id="3_inventiu" tabindex="17" value="<?=$inventiu?>">
+						<input type="text" class="form-control" placeholder="(Introduir nomes el import)" name="3_inventiu" id="3_inventiu" tabindex="17" value="<?=$inventiu?>">
 					</div><br>
 					<div class="input-group" id="txt_1">
 						<span class="input-group-addon"><b>Repartiment &#37;</b></span>
-						<input type="text" class="form-control" placeholder="" name="3_repartiment" id="3_repartiment" tabindex="18" value="<?=$repartiment?>">
+						<input type="text" class="form-control" placeholder="(Introduir nomes el import)" name="3_repartiment" id="3_repartiment" tabindex="18" value="<?=$repartiment?>">
 					</div><br>
 					<div class="input-group" id="txt_1">
 						<span class="input-group-addon"><b>Seguiment</b></span>
