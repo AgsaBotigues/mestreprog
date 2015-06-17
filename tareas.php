@@ -229,7 +229,7 @@ $( window ).load(function() {
 					$repartiment = "";
 					$seguiment = "";
 					
-					for($ii=0;$ii<26;$ii++){ 					
+					for($ii=0;$ii<28;$ii++){ 					
 						if( array_key_exists($ii,$array_opcions) ){
 							$ii==6?$programador1=$array_opcions[6]:"";
 							$ii==7?$programador2=$array_opcions[7]:"";
@@ -240,9 +240,9 @@ $( window ).load(function() {
 							$ii==11?$menu=$array_opcions[12]:"";
 							$ii==13?$temps=$array_opcions[13]:"";
 							$ii==14?$dificultad=$array_opcions[14]:"";
-							$ii==14?$diainici=$array_opcions[14]:"";
-							$ii==15?$diafinal=$array_opcions[15]:"";
-							$ii==16?$diapremes=$array_opcions[16]:"";
+							$ii==15?$diainici=$array_opcions[15]:"";
+							$ii==16?$diafinal=$array_opcions[16]:"";
+							$ii==26?$diapremes=$array_opcions[26]:"";
 							$ii==17?$proves=$array_opcions[17]:"";
 							$ii==18?$obs_proves=$array_opcions[18]:"";
 							$ii==19?$temps_real=$array_opcions[19]:"";
@@ -250,8 +250,8 @@ $( window ).load(function() {
 							$ii==21?$reduccio=$array_opcions[21]:"";
 							$ii==22?$obs=$array_opcions[22]:"";
 							$ii==23?$inventiu=$array_opcions[23]:"";
-							$ii==24?$repartiment=$array_opcions[24]:"";
-							$ii==25?$seguiment=$array_opcions[25]:"";
+							$ii==23?$repartiment=$array_opcions[23]:"";
+							$ii==24?$seguiment=$array_opcions[24]:"";
 						}
 					}					
 ?>
